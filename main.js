@@ -1,4 +1,4 @@
-
+/*
 // đề bài viết hàm tìm phần tử đầu tiên trong mảng//
 // Viết hàm tại đây
 function getLastElement(array){
@@ -122,10 +122,11 @@ function getCanVoteMessage(age){
 console.log(getCanVoteMessage(18)) // 'Bạn có thể bỏ phiếu'
 console.log(getCanVoteMessage(15))// 'Bạn chưa được bỏ phiếu'
 
+// random số ngẫu nhiên trong mảng
 function getRandNumbers(min, max, length) {
     var result = [];
     for (var i = 0; i < length; i++) {
-        var randomNumber = Math.random() * (max - min) + min;
+        var randomNumber = Math.floor(Math.random() * (max - min) + min);
         result.push(randomNumber);
     }
     return result;
@@ -133,3 +134,40 @@ function getRandNumbers(min, max, length) {
 
 var randomNumbers = getRandNumbers(1, 10, 5);
 console.log(randomNumbers);
+
+// tính tổng các phần tử trong mảng
+function getTotal(arr) {
+    var sum = 0;
+    for (var i = 0; i < arr.length; i++){
+       sum = sum + arr[i];
+    }
+    return sum;
+}
+console.log(getTotal([1, 2, 3]));
+console.log(getTotal([4, 5, -3]));
+console.log(getTotal([4, 5, 3, 5]));
+// tính tổng đơn hàng trong object
+var orders = [
+    {
+        name: 'Khóa học HTML - CSS Pro',
+        price: 3000000
+    },
+    {
+        name: 'Khóa học Javascript Pro',
+        price: 2500000
+    },
+    {
+        name: 'Khóa học React Pro',
+        price: 3200000
+    }
+]
+function getTotal (arr){
+    var sum = 0;
+    for (var i = 0; i < arr.length; i++){
+        sum = sum + arr[i].price;
+    }
+    return sum;
+}
+// Expected results:
+console.log(getTotal(orders)); // Output: 8700000
+*/
