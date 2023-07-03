@@ -81,7 +81,7 @@ function getMostFavoriteSport(array){
 // Kỳ vọng
 console.log(getMostFavoriteSport(sports)) 
 // Output: [{ name: 'Bóng rổ, like: 6 }, { name: 'Bóng đá, like: 10 }]
-*/
+
  // array map() method
 var infor = [
   {
@@ -121,6 +121,29 @@ var newInfor = infor.map(inforUser);
 console.log(newInfor);
 //console.log(newInfor.join(' ')); //chuyển về kiểu string
 
+var infor = [
+  {
+    id: 1,
+    name: 'Ho Quoc Phuong',
+    address: 'Thai Binh'
+  },
+  {
+    id: 2,
+    name: 'Pham Anh Tuan',
+    address: 'Hai Phong'
+  },
+  {
+    id: 3,
+    name: 'Vu Anh Khai',
+    address: 'Ninh Binh'
+  },
+  {
+    id: 4,
+    name: 'Tran Minh Hoang',
+    address: 'Nam Dinh'
+  },
+];
+*/
 
 
 
