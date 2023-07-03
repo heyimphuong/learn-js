@@ -146,6 +146,7 @@ function getTotal(arr) {
 console.log(getTotal([1, 2, 3]));
 console.log(getTotal([4, 5, -3]));
 console.log(getTotal([4, 5, 3, 5]));
+
 // tính tổng đơn hàng trong object
 var orders = [
     {
@@ -171,3 +172,4 @@ function getTotal (arr){
 // Expected results:
 console.log(getTotal(orders)); // Output: 8700000
 */
+
