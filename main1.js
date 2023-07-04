@@ -104,7 +104,7 @@ var infor = [
     name: 'Tran Minh Hoang',
     address: 'Nam Dinh'
   },
-];
+]; 
 function inforUser (infor){
     //  return `<h2> ${infor.name} <h2>`; tên 
     return {
@@ -121,31 +121,108 @@ var newInfor = infor.map(inforUser);
 console.log(newInfor);
 //console.log(newInfor.join(' ')); //chuyển về kiểu string
 
-var infor = [
-  {
-    id: 1,
-    name: 'Ho Quoc Phuong',
-    address: 'Thai Binh'
+var courses = [
+  { 
+      id: 1,
+      name: 'Javacript',
+      coin: 100
   },
   {
     id: 2,
-    name: 'Pham Anh Tuan',
-    address: 'Hai Phong'
+    name: 'Javacript',
+    coin: 200
   },
   {
     id: 3,
-    name: 'Vu Anh Khai',
-    address: 'Ninh Binh'
+    name: 'Javacript',
+    coin: 300
   },
   {
     id: 4,
-    name: 'Tran Minh Hoang',
-    address: 'Nam Dinh'
+    name: 'Javacript',
+    coin: 400
+  },
+  {
+    id: 5,
+    name: 'Javacript',
+    coin: 500
   },
 ];
-*/
+var i = 0;
+function coinHandler(accumulator, currentValue, currentIndex, originArray) {
+      i++;
+      var total =  accumulator + currentValue.coin;
+      console.table({
+      'Lượt chạy: ': i,
+      'biến lưu trữ: ': accumulator,
+      'giá khóa học: ':currentValue.coin,
+      'tích trữ được: ': total
+    });
+    return  total;
+}
+
+var totalCoin = courses.reduce(coinHandler, 0);
+console.log(totalCoin)
 
 
+// cách 1 làm với for 
+var sports = [
+  {
+      name: 'Bơi lội',
+      gold: 11
+  },
+  {
+      name: 'Boxing',
+      gold: 3
+  },
+  {
+      name: 'Đạp xe',
+      gold: 4
+  },
+  {
+      name: 'Đấu kiếm',
+      gold: 5
+  },
+];
+function getTotalGold(Array){ 
+  var total = 0;
+  for (var Arrays of Array){
+  total += Arrays.gold;
+}
+return `tổng số huy chương: ${total} gold`;
+}
+// Expected results:
+console.log(getTotalGold(sports)) // Output: 23
 
+// cách 2 dùng Array reduce()
+
+var sports = [
+  {
+      name: 'Bơi lội',
+      gold: 11
+  },
+  {
+      name: 'Boxing',
+      gold: 3
+  },
+  {
+      name: 'Đạp xe',
+      gold: 4
+  },
+  {
+      name: 'Đấu kiếm',
+      gold: 5
+  },
+];
+function getTotalGold(array) {
+  var total = array.reduce(function(accumulator, currentValue) {
+    return accumulator + currentValue.gold;
+  }, 0);
   
+  return total;
+}
+
+// Kết quả mong đợi:
+console.log(getTotalGold(sports)); // Output: 23
+*/
     
