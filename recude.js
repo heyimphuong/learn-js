@@ -175,7 +175,7 @@ function caculate(a, b, cb) {
 // End of Reduce to calculate
 
 // Pratice 1. Đếm số lần có mặt của 1 item trong array
-const fruits = ['apple', 'banana', 'orange', 'apple', 'grape', 'banana', 'apple'];
+//const fruits = ['apple', 'banana', 'orange', 'apple', 'grape', 'banana', 'apple'];
 
 // Use for
 // 1. Khởi tạo 1 biến countOccurrences = {}
@@ -210,7 +210,7 @@ const fruits = ['apple', 'banana', 'orange', 'apple', 'grape', 'banana', 'apple'
 
 // // Expected results:
 // console.log(countOccurrencesValue = { apple: 3, banana: 2, orange: 1, grape: 1 });
-
+/*
 // Pratice 2. Nhóm người theo độ tuổi
 const people = [
   {
@@ -241,3 +241,4 @@ console.log(JSON.stringify(ageGroup) == JSON.stringify({
   25: [{ name: 'John', age: 25 }, { name: 'Mike', age: 25 }],
   30: [{ name: 'Jane', age: 30 }, { name: 'Sarah', age: 30 }]
 }));
+*/
