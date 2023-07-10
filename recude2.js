@@ -96,6 +96,7 @@ courses.forEach2(function(course, index, array){
        like: 6
    },
    {
+       name: 'Bóng chuyền',
        like: 5
   },
    {
@@ -147,5 +148,109 @@ console.log(numbers.myFilter(function (number, index) {
 console.log(numbers.myFilter(function (number, index, array) {
     return array.length % 2 === 0;
 }));// Output: [1, 2, 3, 4]
+
+
+const sports = [
+  {
+      name: 'Bóng rổ',
+      like: 6,
+      isFinish: false
+  },
+  {
+      name: 'Bóng chuyền',
+      like: 5,
+      isFinish: true
+ },
+  {
+     name: 'Bóng đá',
+     like: 10,
+     isFinish: false
+  },
+];
+Array.prototype.some2 = function(Callback) {
+  var output = false;
+
+  for (var index in this) {
+    if (this.hasOwnProperty(index)) {
+      if (Callback(this[index], index, this)){
+          output = true;
+      };
+    }
+  }
+  return output;
+}
+
+var result = sports.some2(function(course, index){
+  return course.isFinish;
+});
+console.log(result);
+
+// thực hành mySome()
+Array.prototype.mySome = function(cb) {
+  var output = false;
+
+  for (var index in this) {
+    if (this.hasOwnProperty(index)) {       //for (var i = 0; i < this.length; ++i) {
+      if (cb(this[index], index, this)){
+          output = true;
+      };
+    }
+  }
+  return output;
+}
+
+//Expected results:
+
+const numbers = [1, 3, 3, 5];
+
+console.log(numbers.mySome(function (number) {
+    return number % 2 === 0;
+})); Output: false
+
+console.log(numbers.mySome(function (number, index) {
+    return index % 2 === 0;
+})); Output: true
+
+console.log(numbers.mySome(function (number, index, array) {
+    return array.length % 2 === 0;
+})); Output: true
+
+//EVERY()
+const sports = [
+  {
+      name: 'Bóng rổ',
+      like: 6,
+      isFinish: true
+  },
+  {
+      name: 'Bóng chuyền',
+      like: 5,
+      isFinish: true
+ },
+  {
+     name: 'Bóng đá',
+     like: 10,
+     isFinish: true
+  },
+];
+Array.prototype.every2 = function(Callback) {
+  var output = true;
+  for (var index in this) {
+      if (this.hasOwnProperty(index)) {
+          var result = Callback(this[index], index, this); {
+          if (!result) {
+            output = false;
+            break;
+          }
+          }
+      }
+  }
+return output;
+}
+
+var result = sports.every2(function(course, index){
+  return course.like > 4;
+});
+console.log(result);
 */
 

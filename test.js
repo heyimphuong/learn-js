@@ -365,7 +365,7 @@ const LANGUAGES = [
     },
     {
         "language": "Uzbek",
-        "code": "uz"
+        "code": "vi1"
     },
     {
         "language": "Vietnamese",
@@ -383,10 +383,26 @@ const LANGUAGES = [
 // Step 2. Lặp qua các phần từ trong mảng LANGUAGES
 // Step 3. Lấy item từ trong mảng ra
 // Step 4. Push object dạng { label: item. }
+/*
+//dùng vòng for
 var parsedLanguages = [];
 for (i = 0; i < LANGUAGES.length; i++) { 
     var item = LANGUAGES[i];
-    // parsedLanguages.push({ label: item.language, value: item.code })
-    parsedLanguages.push(`label: ${item.language}`)
+    parsedLanguages.push({ label: item.language, value: item.code })
+    // parsedLanguages.push(`label: ${item.language}`)
 }
 console.log(parsedLanguages);
+
+// dùng map()
+//var parsedLanguages = [];
+//function parsed (LANGUAGE){
+//   var item = LANGUAGE;
+// return parsedLanguages.push({ label: item.language, value: item.code });
+//};
+var item = LANGUAGES.filter(function (language) {
+    // return { label: language.language, value: language.code };
+    // return parsedLanguages.push({ label: language.language, value: language.code })
+    return language.code.startsWith('vi');
+},this);
+console.log(item)
+*/
