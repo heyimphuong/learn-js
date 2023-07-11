@@ -1,3 +1,4 @@
+/*
 var questionData = {
     "data": [
         {
@@ -25708,3 +25709,4 @@ for (let i = 0; i < questionData.data[0].questions.length; i++) {
 quiz.innerHTML = questions;
 
 // quiz.innerHTML = questionData.data[0].questions.map(question => `<h2>${question.name}</h2><ul>${question.answers.map(answer => `<li>${answer.option}</li>`).join("<br/>")}</ul>`).join("<br/>")
+*/
