@@ -13,4 +13,18 @@ aElement.setAttribute("href", "https://fullstack.edu.vn/");
 aElement.setAttribute("target", "_blank");
 console.log(h1Element);
 console.log(aElement);
+
+// innerText, textContent
+var headingElement =
+    document.querySelector(".heading");
+//console.log(headingElement.innerText);  //geter                                                                  
+headingElement.innerText = `
+
+New heading`; //seter
+
+//innerHTML, outerHTML
+var boxElement = document.querySelector('.box');
+
+boxElement.innerHTML = '<i title="Heading">New Heading</i>';
+console.log(document.querySelector('i').innerText);
 */
