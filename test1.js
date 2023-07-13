@@ -9,7 +9,7 @@ function render(html) {
     <li>Khóa học JS</li>
     <li>Khóa học PHP</li>
  `);
- */
+ 
  var courses = ['HTML & CSS', 'Javascript', 'PHP', 'Java']
  
 function render(courses) {
@@ -37,3 +37,13 @@ Object.assign(boxElement.style, {
   height: '500px',
   backgroundColor: 'green',
 });
+
+var boxElement = document.querySelector('.red')
+Object.assign(boxElement.style, {
+  backgroundColor: '#f00',
+});
+var textColor = document.querySelector('p')
+Object.assign(textColor.style, {
+  color: '#f05123',
+});
+*/
