@@ -5,19 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        div {
-            width: 100px;
-            height: 100px;
-            background-color: #000;
-            color: #fff;
-        }
-    </style>
 </head>
+<style>
+    ul {
+        display: none;
+    }
+
+    input:focus ~ ul {
+        display: block;
+    }
+</style>
 <body>
-    <h1>Javascript basic</h1>
-    <div class="red">Đổi màu thẻ div này thành màu #f00</div>
-    <p>F8 - Học lập trình để đi làm</p>
+    <div>
+        DIV
+        <button>Click me!</button>
+    </div>
 </body>
     <script src="main.js"></script>
     <script src="main1.js"></script>
@@ -27,6 +29,6 @@
     <script src="HTML DOM.js"></script>
     <script src="HTML DOM1.js"></script>
     <script src="dom.js"></script>
-    <script src="test1.js"></script>
+    <script src="test1DOM.js"></script>
     
 </html>
