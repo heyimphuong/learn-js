@@ -133,6 +133,179 @@ buttonElement.onclick = function(){
 //       e.stopPropagation();
 //       console.log('Click me!')
 //     }
+// JSON
+//var json = '["javascript","PHP"]';
+// var json = '{"name":"ho phuong","age":20}';
+// var a = 'false';
+// console.log(typeof JSON.parse(a));
+
+//Promise
+// var promise = new Promise(
+//   // Executor
+//   function(resolve, reject){
+//     //  logic
+//     //  thành công: resolve()
+//     //  thất bại: reject()
+
+//    reject();
+//   }
+// );
+// promise
+//      .then(function(){
+//         console.log('Successully!');      
+//      })
+//      .catch(function(){
+//         console.log('Failure!');
+//      })
+//      .finally(function(){
+//         console.log('Done!');
+//      });
+// function hell(value, cb) {
+//   cb(value);
+// }
+
+// // Không sử dụng Promise dẫn đến tạo ra callback hell 
+// hell(1, function (valueFromA) {
+//   hell(valueFromA + 1, function (valueFromB) {
+//       hell(valueFromB + 1, function (valueFromC) {
+//           hell(valueFromC + 1, function (valueFromD) {
+//               console.log(valueFromD + 1);
+//           });
+//       });
+//   });
+// });
+
+// Sử dụng Promise sẽ tạo ra đoạn code dễ đọc hơn và vẫn đảm bảo đúng logic
+// function notHell(value) {
+//   return new Promise(function (resolve) {
+//       resolve(value);
+//   });
+// }
+
+// notHell(1)
+//   .then(function (value) {
+//     return  value + 1;
+//   })
+//   .then(function (value) {
+//       return  value + 1;
+//   })
+//   .then(function (value) {
+//       return value + 1;
+//   })
+//   .then(function (value) {
+//       console.log(value + 1);
+//   });
 */
+var users = [
+  {
+    id: 1,
+    name: 'ho phuong',
+  },
+  {
+    id: 2,
+    name: 'pham tuan',
+  },
+  {
+    id: 3,
+    name: 'vu khai',
+  },
+  {
+    id: 4,
+    name: 'tran hoang',
+  },
+  //..
+]
+
+var comments = [
+  {
+    id: 1,
+    users_id: 2,
+    content: 'có định đi cinema k anh em?'
+  },
+  {
+    id: 2,
+    users_id: 3,
+    content: 'phim ngày trở lại!'
+  },
+  {
+    id: 3,
+    users_id: 1,
+    content: 'phim ngày trở lại!'
+  }
+
+];
+//1. lấy comments
+//2.từ comments lấy ra user_id,
+//từ user_id lấy ra user tương ứng
+
+// fake API
+
+function getComments() {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(comments)
+      // reject(comments)
+    }, 1000);
+  })
+}
+function getUserByIds(userIds) {
+  return new Promise(function (resolve, reject) {
+    var result = users.filter(function (user) {
+      return userIds.includes(user.id);
+    });
+    setTimeout(function () {
+      // reject();
+      resolve(result);
+    }, 1000);
+  });
+}
+var commentBlock = document.getElementById('comment-block');
+var loadingBlock = document.getElementById('loading');
+
+commentBlock.innerHTML = "Loading ...";
+
+getComments()
+  .then(function (comments) {
+    var usersIds = comments.map(function (comment) {
+      return comment.users_id;
+    });
+    return getUserByIds(usersIds)
+      .then(function (users) {
+        return {
+          users: users,
+          comments: comments,
+        };
+      });
+  })
+  .then(function (data) {
+    var html = '';
+
+    // data.comments = [
+    //   {
+    //     id: 1,
+    //     users_id: 2,
+    //     content: 'có định đi cinema k anh em?'
+    //   },
+    //   {
+    //     id: 2,
+    //     users_id: 3,
+    //     content: 'phim ngày trở lại!'
+    //   }
+    // ];
+
+    data.comments.forEach(function (comment) {
+      var user = data.users.find(function (user) {
+        return user.id === comment.users_id;
+      });
+      html += `<li>${user.name}: ${comment.content}</li>`;
+    });
+    commentBlock.innerHTML = html;
+  })
+  .catch(() => {
+    commentBlock.innerHTML = "Internal error";
+  })
+  .finally(() => {
+    loadingBlock.innerHTML = "";
+  })
 
 
