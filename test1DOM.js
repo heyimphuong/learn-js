@@ -195,7 +195,7 @@ buttonElement.onclick = function(){
 //   .then(function (value) {
 //       console.log(value + 1);
 //   });
-*/
+
 var users = [
   {
     id: 1,
@@ -307,5 +307,20 @@ getComments()
   .finally(() => {
     loadingBlock.innerHTML = "";
   })
-
+*/
+// FETCH
+var PostApi = 'https://jsonplaceholder.typicode.com/posts';
+fetch(PostApi)
+    .then(function(response){
+      return response.json();
+    })
+    .then(function(posts){ 
+      var htmls = posts.map(function(post){
+        return  `<li>
+             <h2>${post.title}</h2>
+             <p>${post.body}</p>  
+        </li>`;
+      });
+      document.getElementById('post-block').innerHTML = htmls;
+    });
 
