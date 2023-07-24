@@ -307,7 +307,7 @@ getComments()
   .finally(() => {
     loadingBlock.innerHTML = "";
   })
-*/
+
 // FETCH
 var PostApi = 'https://jsonplaceholder.typicode.com/posts';
 fetch(PostApi)
@@ -323,4 +323,4 @@ fetch(PostApi)
       });
       document.getElementById('post-block').innerHTML = htmls;
     });
-
+*/
