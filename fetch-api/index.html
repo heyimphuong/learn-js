@@ -33,7 +33,10 @@
 
     <div class="update-form">
         <div>Update</div>
-        <input type="text" name="id" readonly>
+        <div>
+            <label>ID</label>
+            <input type="text" name="id" readonly>
+        </div>
         <div>
             <label>Name</label>
             <input type="text" name="name">
@@ -46,6 +49,7 @@
 
         <div>
             <button id="update">Update</button>
+            <button id="close">Close</button>
         </div>
     </div>
     <script src="list.js"></script>
@@ -53,9 +57,10 @@
     <script src="delete.js"></script>
     <script src="create.js"></script>
 </body>
-<style>
+ <style>
      .update-form {
         display: none;
      }  
-</style>
+</style> 
+
 </html>

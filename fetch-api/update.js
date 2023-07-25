@@ -5,8 +5,14 @@ function handleUpdateCourse(id) {
             document.querySelector('.update-form input[name="id"]').value = data.id;
             document.querySelector('.update-form input[name="name"]').value = data.name;
             document.querySelector('.update-form input[name="total"]').value = data.total;
+
+            document.querySelector('.update-form').style.display = "block";
+        })
+        .catch(function () {
+            alert('Lỗi mạng rùi')
         })
 }
+
 
 function handleUpdateForm() {
     var updateButton = document.querySelector('#update');
@@ -21,10 +27,13 @@ function handleUpdateForm() {
             method: 'PUT',
             body: JSON.stringify({ name: name, total: total })
         })
+            
             .then(function () {
                 // 3. Render lại các courses
                 getCourses(renderCourses);
+                
             });
+           
     }
 
 }
@@ -35,3 +44,11 @@ function handleUpdateForm() {
 // 3. Render lại các courses
 
 handleUpdateForm();
+
+const closeUpdateFormBtn = document.querySelector('#close');
+closeUpdateFormBtn.addEventListener('click', function() {
+    document.querySelector('.update-form').style.display = "none";
+});
+// document.querySelector('#close').addEventListener('click', function () {
+//     document.querySelector('.update-form').style.display = "none";
+// });

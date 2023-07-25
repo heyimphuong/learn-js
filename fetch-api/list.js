@@ -28,6 +28,7 @@ function renderCourses(courses) {
             Tổng điểm: ${course.total}
             <button onclick="handleDeleteCourse(${course.id})">Delete</button>
             <button onclick="handleUpdateCourse(${course.id})">Update</button>
+           
           </li>
           `
     });

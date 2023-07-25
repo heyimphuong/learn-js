@@ -133,11 +133,4 @@ function handleUpdateForm() {
   }
 
 }
-let text;
-let choice = confirm("Mời bạn xác nhận!");
-if (choice == true) {
-    text = "Nút OK đã được bấm!";
-} else {
-    text = "Nút Cancel đã được bấm!";
-}
-console.log(text);
+
