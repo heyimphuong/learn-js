@@ -70,8 +70,8 @@
 // const {blog: nameBlog, type: newType} = res;
 // console.log(nameBlog, newType); //anonystick.com, javascript
 
-function logger(...params) {
-     console.log(params);
- }
+// function logger(...params) {
+//      console.log(params);
+//  }
 
-console.log(logger(1,2,3,4,5,6,7,8));
+// console.log(logger(1,2,3,4,5,6,7,8));
