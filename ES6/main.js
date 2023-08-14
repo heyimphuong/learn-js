@@ -70,8 +70,36 @@
 // const {blog: nameBlog, type: newType} = res;
 // console.log(nameBlog, newType); //anonystick.com, javascript
 
-// function logger(...params) {
+// function logger(a,b,...params) {
 //      console.log(params);
 //  }
 
-// console.log(logger(1,2,3,4,5,6,7,8));
+// logger(1,2,3,4,5,6,7,8);
+
+// function logger({name, price, ...rest}) {
+//     console.log(name);
+//     console.log(price);
+//     console.log( 'Lấy ra phần còn lại của object:',rest); //Lấy ra phần còn lại của object
+// }
+
+// logger({
+//     name: 'javascript',
+//     price: 1000,
+//     description: 'Description content'
+// });
+
+// function logger([a, b, ...rest]) {
+//     console.log(a);
+//     console.log(b);
+//     console.log( 'Lấy ra phần còn lại của Array:',rest); //Lấy ra phần còn lại của Array
+// // }
+// }
+
+// logger([2, 6, 4, 8, 9, 10]);
+
+// var array1 = ['Javascript', 'PHP', 'Ruby'];
+// var array2 = ['ReactJS', 'Dart'];
+// var array3 = [...array1, ...array2];
+
+// console.log(array3);
+
