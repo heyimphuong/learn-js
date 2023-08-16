@@ -266,60 +266,61 @@
     const audio = $('#audio')
     const cd = $('.cd') // lấy ra element của cd
     const playBtn = $('.btn-toggle-play')
+    const progress = $('#progress')
 
-/* tạo list nhạc */
+    /* tạo list nhạc */
     const app = {
         currentIndex: 0,
         isPlaying: false,
         songs: [
             {
-                name: 'Song',
-                singer: "Phuong",
-                path: 'https://file-examples.com/storage/fe7bb0e37864d66f29c40ee/2017/11/file_example_MP3_700KB.mp3',
-                image: 'https://photo-resize-zmp3.zmdcdn.me'
+                name: 'Hoa Bằng Lăng',
+                singer: "Ha Nhi",
+                path: 'http://127.0.0.1:3000/Thuchanh/music/HoaBangLang.mp3',
+                image: 'https://img6.thuthuatphanmem.vn/uploads/2022/01/25/anh-lofi-chill-dep-tuyet_042523118.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
                 path: 'https://file-examples.com/storage/fe7bb0e37864d66f29c40ee/2017/11/file_example_MP3_700KB.mp3',
-                image: 'https://photo-resize-zmp3.zmdcdn.me'
+                image: 'https://haycafe.vn/wp-content/uploads/2022/04/Hinh-nen-chill-buon.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
                 path: 'https://file-examples.com/storage/fe7bb0e37864d66f29c40ee/2017/11/file_example_MP3_700KB.mp3',
-                image: 'https://photo-resize-zmp3.zmdcdn.me'
+                image: 'https://i.ytimg.com/vi/qsV3ebDNbyw/maxresdefault.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
                 path: 'https://file-examples.com/storage/fe7bb0e37864d66f29c40ee/2017/11/file_example_MP3_700KB.mp3',
-                image: 'https://photo-resize-zmp3.zmdcdn.me'
+                image: 'https://media.2dep.vn/upload/thanhle/2021/12/16/chill-nghia-la-gi-tren-facebook-trao-luu-chill-cua-gioi-tre-1639639538-1.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
                 path: 'https://file-examples.com/storage/fe7bb0e37864d66f29c40ee/2017/11/file_example_MP3_700KB.mp3',
-                image: 'https://photo-resize-zmp3.zmdcdn.me'
+                image: 'https://evbn.org/wp-content/uploads/lofi-la-gi-02.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
                 path: 'https://file-examples.com/storage/fe7bb0e37864d66f29c40ee/2017/11/file_example_MP3_700KB.mp3',
-                image: 'https://photo-resize-zmp3.zmdcdn.me'
+                image: 'https://vnptschool.edu.vn/wp-content/uploads/2022/06/1655321686_maxresdefault.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
                 path: 'https://file-examples.com/storage/fe7bb0e37864d66f29c40ee/2017/11/file_example_MP3_700KB.mp3',
-                image: 'https://photo-resize-zmp3.zmdcdn.me'
+                image: 'https://haycafe.vn/wp-content/uploads/2022/04/hinh-anh-chill-1.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
                 path: 'https://file-examples.com/storage/fe7bb0e37864d66f29c40ee/2017/11/file_example_MP3_700KB.mp3',
-                image: 'https://photo-resize-zmp3.zmdcdn.me'
-            },    
+                image: 'https://a-static.besthdwallpaper.com/lofi-chill-bedroom-wallpaper-3840x2160-85077_54.jpg'
+            },
         ],
         /* 1. Render songs // Kết xuất bài hát */
         render: function () {
@@ -340,46 +341,71 @@
             })
             $('.playlist').innerHTML = htmls.join('')
         },
-        defineProperties: function() {
+        defineProperties: function () {
             Object.defineProperty(this, 'currentSong', {
-                get: function() {
+                get: function () {
                     return this.songs[this.currentIndex]
                 }
             })
         },
         /* 2. Scroll top // Cuộn lên trên */
-        handleEvents: function(){    
-            
+        handleEvents: function () {
+
             const cdwidth = cd.offsetWidth // kíck thước chièu rộng
             // xử lý phóng to hoặc thu nhỏ CD
-            document.onscroll = function() {  
-                const scrollTop = window.scrollY ||document.documentElement.scrollTop  //lắng nghe event kéo trên tọa độ Y
+            document.onscroll = function () {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop  //lắng nghe event kéo trên tọa độ Y
                 const newCdwidth = cdwidth - scrollTop
 
-                cd.style.width = newCdwidth > 0 ? newCdwidth + 'px':0
+                cd.style.width = newCdwidth > 0 ? newCdwidth + 'px' : 0
                 cd.style.opacity = newCdwidth / cdwidth
             }
             // xử lý khi click play
-            playBtn.onclick = function() {
+            playBtn.onclick = function () {
                 if (app.isPlaying) {
-                    app.isPlaying = false
                     audio.pause()
-                    player.classList.remove('playing')
-                }else{
-                    app.isPlaying = true
-                audio.play()
-                player.classList.add('playing')
                 }
-                
+                else {
+                    audio.play()
+                }
+
+            }
+            // khi bài hát được play
+            audio.onplay = function () {
+                app.isPlaying = true
+                player.classList.add('playing')
+            }
+            // khi bài hát bị pause
+            audio.onpause = function () {
+                app.isPlaying = false
+                player.classList.remove('playing')
+            }
+            // khi tiến độ bài hát thay đổi
+            audio.ontimeupdate = function () {
+                if (audio.duration) {
+                    const progressPercent = Math.floor(audio.currentTime / audio.duration * 100)
+                    progress.value = progressPercent
+                }
+
+            }
+
+
+
+            // xử lí bài hát
+            progress.onchange = () => {
+                // const seekSeconds = progress.value; // Số giây người dùng muốn tời tới
+                const seekPercent = progress.value;
+                const seekSeconds = (audio.duration / 100) * seekPercent ;
+                audio.currentTime = seekSeconds
             }
         },
-        loadCurrentSong: function() {
-            
+        loadCurrentSong: function () {
+
             heading.textContent = this.currentSong.name
             cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
             audio.src = this.currentSong.path
 
-          
+
         },
         start: function () {
             // định nghĩa các thuộc tính cho object
