@@ -124,6 +124,9 @@
         display: flex;
         margin: auto;
         width: 200px;
+        margin: 0 auto;
+        border-radius: 50%;
+        border: 30px solid #9b9393;
     }
 
     .cd-thumb {
@@ -278,6 +281,7 @@
         currentIndex: 0,
         isPlaying: false,
         isRandom: false,
+        isRepeat: false,
         songs: [
             {
                 name: 'Hoa Bằng Lăng',
@@ -404,7 +408,7 @@
                     const progressPercent = Math.floor(audio.currentTime / audio.duration * 100)
                     progress.value = progressPercent
                 }
-            // console.log(progress.value)
+                // console.log(progress.value)
             }
             // xử lí bài hát khi tua bài hát
             // progress.onchange = () => {
@@ -434,8 +438,13 @@
                 randomBtn.classList.toggle('active', app.isRandom)
 
             }
+            // xử lý lặp lại một song
+            repeatBtn.onclick = function (e) {
+                app.isRepeat = !app.isRepeat
+                repeatBtn.classList.toggle('active', app.isRepeat)
+            }
             // 7. Next / Repeat when ended // Tiếp theo/Lặp lại khi kết thúc
-            audio.onended = app.automateNextsong
+            audio.onended = app.autoRepeatsong;
 
         },
 
@@ -463,7 +472,7 @@
         },
         // hàm random ra bài hát ngẫu nhiên 
         playRandomSong: function () {
-            let newIndex 
+            let newIndex
             do {
                 newIndex = Math.floor(Math.random() * this.songs.length)
             } while (newIndex === this.currentIndex)
@@ -471,19 +480,30 @@
             this.loadCurrentSong()
         },
         // hàm chọn bài hát
-        playSong: function(songIdx) {
+        playSong: function (songIdx) {
             this.currentIndex = songIdx
             this.loadCurrentSong()
         },
-        //hàm tự động chuyển bài 
+        // hàm tự động chuyển bài 
         automateNextsong: function () {
-                if (app.isRandom) {
-                    app.playRandomSong()
-                } else {
-                    app.nextSong()
-                }
-                audio.play()
-            },
+            if (app.isRandom) {
+                app.playRandomSong()
+            } else {
+                app.nextSong()
+            }
+            audio.play()
+        },
+        // hàm tự động lặp lại
+        autoRepeatsong: function () {
+            if (app.isRepeat) {
+                // Do nothing
+            } else if (app.isRandom) {
+                app.playRandomSong()
+            } else {
+                app.nextSong()
+            }
+            audio.play()
+        },
         start: function () {
             // định nghĩa các thuộc tính cho object
             this.defineProperties()
