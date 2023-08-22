@@ -67,9 +67,8 @@
     }
 
     body {
-        background-color: #f5f5f5;
+        background-image: url("https://cdn.tgdd.vn//GameApp/1369751//100-hinh-nen-lofi-cuc-chill-11-675x1200.jpg");
     }
-
     html {
         box-sizing: border-box;
         font-family: "Poppins", sans-serif;
@@ -199,26 +198,16 @@
         display: flex;
         align-items: center;
         margin-bottom: 12px;
-        background-color: #fff;
         padding: 8px 16px;
         border-radius: 5px;
         box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+        background-color: rgb(230, 201, 223);
     }
-
-    .song.active {
-        background-color: var(--primary-color);
-    }
-
     .song:active {
         opacity: 0.8;
+        background-color: #ca329d;
+    
     }
-
-    .song.active .option,
-    .song.active .author,
-    .song.active .title {
-        color: #fff;
-    }
-
     .song .thumb {
         width: 44px;
         height: 44px;
@@ -247,6 +236,7 @@
         color: #999;
         font-size: 18px;
     }
+    
 </style>
 <script>
     /**
@@ -258,7 +248,6 @@
      * 6. Random song// chọn bài ngẫu nhiên 
      * 7. Next / Repeat when ended // Tiếp theo/Lặp lại khi kết thúc
      * 8. Active song // Bài hát hoạt động
-     * 9. Scroll active song into view // Cuộn bài hát đang hoạt động vào chế độ xem
      * 10. Play song when click // Phát bài hát khi nhấp chuột
      */
     const $ = document.querySelector.bind(document)
@@ -286,49 +275,49 @@
             {
                 name: 'Hoa Bằng Lăng',
                 singer: "Ha Nhi",
-                path: 'http://127.0.0.1:3000/Thuchanh/music/HoaBangLang.mp3',
+                path: 'http://127.0.0.1:3000/Thuchanh/CodeMusicPlayer/music/HoaBangLang.mp3',
                 image: 'https://img6.thuthuatphanmem.vn/uploads/2022/01/25/anh-lofi-chill-dep-tuyet_042523118.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
-                path: 'http://127.0.0.1:3000/Thuchanh/music/HoaBangLang.mp3',
+                path: 'http://127.0.0.1:3000/Thuchanh/CodeMusicPlayer/music/HoaBangLang.mp3',
                 image: 'https://haycafe.vn/wp-content/uploads/2022/04/Hinh-nen-chill-buon.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
-                path: 'http://127.0.0.1:3000/Thuchanh/music/HoaBangLang.mp3',
+                path: 'http://127.0.0.1:3000/Thuchanh/CodeMusicPlayer/music/HoaBangLang.mp3',
                 image: 'https://i.ytimg.com/vi/qsV3ebDNbyw/maxresdefault.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
-                path: 'http://127.0.0.1:3000/Thuchanh/music/HoaBangLang.mp3',
+                path: 'http://127.0.0.1:3000/Thuchanh/CodeMusicPlayer/music/HoaBangLang.mp3',
                 image: 'https://media.2dep.vn/upload/thanhle/2021/12/16/chill-nghia-la-gi-tren-facebook-trao-luu-chill-cua-gioi-tre-1639639538-1.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
-                path: 'http://127.0.0.1:3000/Thuchanh/music/HoaBangLang.mp3',
+                path: 'http://127.0.0.1:3000/Thuchanh/CodeMusicPlayer/music/HoaBangLang.mp3',
                 image: 'https://evbn.org/wp-content/uploads/lofi-la-gi-02.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
-                path: 'http://127.0.0.1:3000/Thuchanh/music/HoaBangLang.mp3',
+                path: 'http://127.0.0.1:3000/Thuchanh/CodeMusicPlayer/music/HoaBangLang.mp3',
                 image: 'https://vnptschool.edu.vn/wp-content/uploads/2022/06/1655321686_maxresdefault.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
-                path: 'http://127.0.0.1:3000/Thuchanh/music/HoaBangLang.mp3',
+                path: 'http://127.0.0.1:3000/Thuchanh/CodeMusicPlayer/music/HoaBangLang.mp3',
                 image: 'https://haycafe.vn/wp-content/uploads/2022/04/hinh-anh-chill-1.jpg'
             },
             {
                 name: 'Song',
                 singer: "Phuong",
-                path: 'http://127.0.0.1:3000/Thuchanh/music/HoaBangLang.mp3',
+                path: 'http://127.0.0.1:3000/Thuchanh/CodeMusicPlayer/music/HoaBangLang.mp3',
                 image: 'https://a-static.besthdwallpaper.com/lofi-chill-bedroom-wallpaper-3840x2160-85077_54.jpg'
             },
         ],
@@ -483,6 +472,7 @@
         playSong: function (songIdx) {
             this.currentIndex = songIdx
             this.loadCurrentSong()
+            audio.play()
         },
         // hàm tự động chuyển bài 
         automateNextsong: function () {
@@ -505,6 +495,7 @@
             audio.play()
         },
         start: function () {
+            
             // định nghĩa các thuộc tính cho object
             this.defineProperties()
 
