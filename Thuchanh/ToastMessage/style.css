@@ -1,6 +1,7 @@
-body{
+body {
     background-color: aqua;
 }
+
 .toast {
     display: flex;
     align-items: start;
@@ -14,53 +15,57 @@ body{
     gap: 20px;
     justify-content: start;
     height: inherit;
-    animation: slideInLeft ease .3s, fadeOut linear 1s 3s;
+    animation: slideInLeft ease .3s, fadeOut linear 1s 3s forwards;
 }
+
 @keyframes slideInLeft {
     from {
         opacity: 0;
         transform: translateX(110%);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
     }
 }
-@keyframes fadeOut{
+
+@keyframes fadeOut {
     to {
         opacity: 0;
     }
 }
-.toast--success{
+
+.toast--success {
     border-color: #47d864;
 
 }
 
-.toast--success .toast__icon{
+.toast--success .toast__icon {
     color: #47d864;
 }
 
-.toast--info{
+.toast--info {
     border-color: #2f86eb;
 }
 
-.toast--info .toast__icon{
+.toast--info .toast__icon {
     color: #2f86eb;
 }
 
-.toast--warning{
+.toast--warning {
     border-color: #ffc021;
 }
 
-.toast--warning .toast__icon{
+.toast--warning .toast__icon {
     color: #ffc021;
 }
 
-.toast--error{
+.toast--error {
     border-color: #ff623d;
 }
 
-.toast--error .toast__icon{
+.toast--error .toast__icon {
     color: #ff623d;
 }
 
@@ -91,4 +96,24 @@ body{
     margin-left: 30;
     cursor: pointer;
 
+}
+
+.btn {
+    font-size: 16px;
+    padding: 10px;
+    width: 200px;
+    border-radius: 30px;
+    color: #f6f8fa;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.btn.btn--success {
+    background-color: #47d864;
+    border-color: #47d864;
+}
+
+.btn.btn--error {
+    background-color: red;
+    border-color: red;
 }
