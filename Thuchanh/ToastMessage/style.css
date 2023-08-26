@@ -1,6 +1,9 @@
 body {
     background-color: aqua;
 }
+#toast {
+    z-index: 999999;
+}
 
 .toast {
     display: flex;
@@ -15,7 +18,8 @@ body {
     gap: 20px;
     justify-content: start;
     height: inherit;
-    animation: slideInLeft ease .3s, fadeOut linear 1s 3s forwards;
+    margin-top: 10px;
+    transition: all linear .3s;
 }
 
 @keyframes slideInLeft {

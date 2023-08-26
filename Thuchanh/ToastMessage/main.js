@@ -8,12 +8,25 @@ function toast({
     const main = document.getElementById('toast');
     if (main) {
         const toast = document.createElement('div');
+
+        //auto remove toast 
+        const autoRemoveId = setTimeout(function () {
+            main.removeChild(toast);
+        }, duration + 1000);
+
+        // remove toast when clicked
+        toast.onclick = function (e) {
+            if (e.target.closest('.toast__close')) {
+                main.removeChild(toast);
+                clearTimeout(autoRemoveId);
+            }
+        }
         const icons = {
             success: 'fas fa-check-circle',
             info: 'fas fa-info-circle',
             warning: 'fas fa-exclamation-circle',
             error: 'fa-solid fa-bomb',
-        }; 
+        };
         const icon = icons[type];
         const delay = (duration / 1000).toFixed(2);
 
@@ -32,7 +45,11 @@ function toast({
             <i class="fa-solid fa-circle-xmark"></i>
         </div>
         `;
-    main.appendChild(toast); 
+        main.appendChild(toast);
+
+        setTimeout(function () {
+            main.removeChild(toast);
+        }, duration + 1000);
     }
 }
 
@@ -43,12 +60,12 @@ function toast({
 //     duration: 3000
 // });
 
-function showSuccessToast(){
+function showSuccessToast() {
     toast({
         title: 'Thành Công!!!',
         message: 'Bạn đã đăng ký thành công! ',
         type: 'success',
-        duration: 3000
+        duration: 5000
     });
 }
 
@@ -57,6 +74,6 @@ function showErrorToast() {
         title: 'Thất Bại >.<',
         message: 'Có lỗi xẩy ra vui lòng đăng nhập lại! ',
         type: 'error',
-        duration: 3000
+        duration: 5000
     });
 }
