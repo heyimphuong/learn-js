@@ -8,6 +8,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>BEM</title>
     <link rel="stylesheet" href="./style.css">
+    
 </head>
 
 <body>
@@ -15,20 +16,13 @@
         style="/* display: flex; *//* flex-direction: column; *//* align-items: center; *//* gap: 50px; */position: fixed;top: 0;right: 20px;padding: 20px;">
         <div id="toast">
             <!--Success-->
-            <div class="toast toast--success">
-                <div class="toast__icon">
-                    <i class="fa-solid fa-circle-check"></i>
-                </div>
-                <div class="toast__body">
-                    <h3 class="toast__title">Success</h3>
-                    <p class="toast__msg">Tham gia nhóm Học lập trình tại F8 trên Facebook để cùng nhau trao đổi trong
-                        quá trình học tập ❤️</p>
-                </div>
-                <div class="toast__close">
-                    <i class="fa-solid fa-circle-xmark"></i>
-                </div>
-            </div>
+            
         </div>
+    </div>
+
+    <div>
+         <div onclick="showSuccessToast();" class="btn btn--success">Show Success toast</div>
+         <div onclick="showErrorToast();" class="btn btn--error">Show Error toast</div>
     </div>
 </body>
 <script src="main.js"></script>
