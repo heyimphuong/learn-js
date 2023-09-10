@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colored Vinamilk</title>
+    <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="left">
+            <div id="box" style="background: #008068;">
+                <div id="text" style="color: #FFF">
+                    <span id="name">HO_PHUONG</span>
+                    <span id="est">EST</span>
+                    <span id="year">2003</span>
+                </div>
+            </div>
+        </div>
+        <form class="setting" id="form">
+            <div class="banner">
+                Vui lòng nhập thông tin ở đây, sau đó bấm nút <strong>Thay đổi</strong>
+            </div>
+            <input type="text" id="text-value"  placeholder="Nhập tên bạn vô đây" required maxlength="10" autofocus minlength="3">
+            <input type="number" id="text-year"  placeholder="Năm bạn chui ra ngoài" required max="2023" min="1930">
+            <i>*Chọn màu nền :  </i>
+            <input type="color" id="box-color-value"  required>
+            <i>*Chọn màu chữ :</i>
+            <input type="color" id="text-color-value"  required>
+            <button id="change-button" type="submit">Thay đổi</button>
+            <i>*Tôi mới học tới đây còn ảnh thì bạn tự chụp màn hình lưu vào máy cảm ơn !!!</i>
+        </div>
+    </div>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
