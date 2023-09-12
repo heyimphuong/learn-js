@@ -1,22 +1,58 @@
-import { useState } from "react";
-
-
-const gifts = [
-  'CPU 19',
-  'RAM 32 GB RGB',
-  'RGB Keyboard',
+import { useCallback, useState } from "react";
+const courses = [
+  {
+    id: 1,
+    name: 'HTML, CSS'
+  },
+  {
+    id: 2,
+    name: 'Javascript'
+  },
+  {
+    id: 3,
+    name: 'ReactJS'
+  },
+  {
+    id: 4,
+    name: 'Ruby'
+  },
 ]
+
+
 function App() {
-  const [gift, setGift] = useState()
-  const randomGift = () => {
-    const index = Math.floor(Math.random()*gifts.length)
-    setGift(gifts[index])
+  const [checked, setChecked] = useState([])
+  console.log(checked);
+
+  const handleCheck = (id) => {
+    setChecked(prev => {
+      const isChecked = checked.includes(id)
+      if (isChecked) {
+        // Uncheck
+      return checked.filter(item => item != id)
+      } else {
+        return [...prev, id]
+      }
+    })
+  }
+
+  const handleSubmit = () => {
+     console.log({ id: checked})
   }
 
   return (
     <div className="App">
-    <h1>{gift ||'Chưa có phần thưởng'}</h1>
-    <button onClick = {randomGift}>Lấy thưởng</button>
+      {courses.map(course => (
+        <div key={course.id}>
+          <input
+            type="checkbox"
+            checked={checked.includes(course.id)}
+            onChange={() => handleCheck(course.id)}
+          />
+          {course.name}
+        </div>
+      ))}
+      <button onClick={handleSubmit}>Register</button>
+
     </div>
   )
 }
