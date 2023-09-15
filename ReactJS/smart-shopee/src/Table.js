@@ -1,6 +1,8 @@
+import './table.css';
+ 
 export const Table = ({ alinks }) => {
     return (
-        <table>
+        <table >
             <tbody>
                 {alinks.map(link => (
                     <tr>
