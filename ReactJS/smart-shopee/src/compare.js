@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import React, { useRef } from "react"
 
 export const Compare = ({ handleCheck }) => {
     const ref = useRef()

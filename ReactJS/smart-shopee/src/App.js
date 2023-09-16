@@ -1,9 +1,10 @@
+import React from 'react';
 import { useState } from "react"
 import { Table } from "./Table"
-import { Form } from "./Form"
+import { Form }  from "./Form";
 import { Compare } from "./compare"
 
-function App() {
+export function App() {
 
 
   const [links, setLinks] = useState([])
@@ -22,4 +23,5 @@ function App() {
     </>
   );
 }
-export default App;
+
+// export default App;
