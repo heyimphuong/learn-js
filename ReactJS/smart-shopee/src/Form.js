@@ -19,7 +19,11 @@ export const Form = ({ links, handleCheck }) => {
                 </ul>
             </div>
             <div>
-                <input autoFocus placeholder="Nhập đường link shopee..." ref={ref} required="required" />
+                <input 
+                autoFocus placeholder="Nhập đường link shopee..." 
+                ref={ref} 
+                required="required" 
+                />
             </div>
             <div>
                 <button type="submit" onClick={handleAdd}>Thêm </button>

@@ -1,0 +1,13 @@
+.required {
+    color: red;
+    margin-left: 5px; 
+}
+table, th, td{
+    border:1px solid black;
+}
+table{
+    border-collapse:collapse;
+}
+.center-text {
+    text-align: center;
+  }

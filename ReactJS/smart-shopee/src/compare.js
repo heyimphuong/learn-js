@@ -1,5 +1,36 @@
 import React, { useState } from 'react';
-import './compare'
+import './compare.css'
+
+//Để thêm validFactorTypes 
+const validFactorTypes = [
+    {
+        value: "impact",
+        label: 'Ảnh hưởng'
+    },
+    {
+        value: "effort",
+        label: 'Nỗ lực'
+    },
+    {
+        value: "custom",
+        label: 'Cá nhân hóa'
+    },
+    {
+        value: "tuy_chon",
+        label: 'Tùy chọn'
+    },
+];
+
+const validFactorValueTypes = [
+    {
+        value: "review",
+        label: 'Review'
+    },
+    {
+        value: "totalReview",
+        label: 'Total Review'
+    }
+];
 
 export const Compare = () => {
     const [formData, setFormData] = useState({
@@ -10,9 +41,9 @@ export const Compare = () => {
     });
 
     const [submittedData, setSubmittedData] = useState(null);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
+
         setFormData({
             ...formData,
             [name]: value
@@ -21,17 +52,38 @@ export const Compare = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const { name, factorType,factorValueType, weight } = formData;
 
-        // In ra các bảng tương ứng với dữ liệu
-        setSubmittedData(formData);
+        if (name.trim() === '' || name.length > 30) {
+            alert('Tên không hợp lệ!')
+            return;
+
+        }
+        if (!validFactorTypes.map(type => type.value).includes(factorType)) {
+            alert('Loại không hợp lệ.')
+            return;
+        }
+
+        if (!validFactorValueTypes.map(type => type.value).includes(factorValueType)) {
+            alert('Factor value type không hợp lệ!')
+            return;
+
+        }
+        if (isNaN(weight) || weight < 1 || weight >= 100) {
+            alert('Trọng số không hợp lệ!');
+            return;
+
+        }
+        setSubmittedData(formData)
     };
 
+    // console.log({ formData })
     return (
         <div className="wrapper">
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <label>
-                        <p>Name:</p>
+                        <p>Name:<span className="required">*</span></p>
                         <input
                             type="text"
                             name="name"
@@ -39,35 +91,42 @@ export const Compare = () => {
                             value={formData.name}
                             onChange={handleChange}
                             required
+                            maxLength={30}
                         />
-                        <span className="required">*</span>
+
                     </label>
                     <label>
-                        <p>Factor type:</p>
-                        <input
+                        <p>Factor type:<span className="required">*</span></p>
+                        <select
                             type="text"
                             name="factorType"
-                            placeholder="Nhập loại..."
                             value={formData.factorType}
                             onChange={handleChange}
                             required
-                        />
-                        <span className="required">*</span>
+                        >
+                            <option value="">-- Chọn loại --</option>
+                            {validFactorTypes.map(type => (
+                                <option key={type.value} value={type.value}>{type.label}</option>
+                            ))}
+                        </select>
                     </label>
                     <label>
-                        <p>Factor value type:</p>
-                        <input
+                        <p>Factor value type:<span className="required">*</span></p>
+                        <select
                             type="text"
                             name="factorValueType"
-                            placeholder="Nhập loại giá trị..."
                             value={formData.factorValueType}
                             onChange={handleChange}
                             required
-                        />
-                        <span className="required">*</span>
+                        >
+                            <option value="">-- Chọn loại --</option>
+                            {validFactorValueTypes.map(type => (
+                                <option key={type.value} value={type.value}>{type.label}</option>
+                            ))}
+                        </select>
                     </label>
                     <label>
-                        <p>Weight:</p>
+                        <p>Weight:<span className="required">*</span></p>
                         <input
                             type="number"
                             name="weight"
@@ -78,7 +137,7 @@ export const Compare = () => {
                             min="1"
                             max="100"
                         />
-                        <span className="required">*</span>
+
                     </label>
 
                 </fieldset>
@@ -91,21 +150,18 @@ export const Compare = () => {
                     <h2>Submitted Data</h2>
                     <table>
                         <tbody>
+
                             <tr>
                                 <th>Name</th>
-                                <td>{submittedData.name}</td>
-                            </tr>
-                            <tr>
                                 <th>Factor type</th>
-                                <td>{submittedData.factorType}</td>
-                            </tr>
-                            <tr>
                                 <th>Factor value type</th>
-                                <td>{submittedData.factorValueType}</td>
+                                <th>Weight</th>
                             </tr>
                             <tr>
-                                <th>Weight</th>
-                                <td>{submittedData.weight}</td>
+                                <td className="center-text">{submittedData.name}</td>
+                                <td className="center-text">{submittedData.factorType}</td>
+                                <td className="center-text">{submittedData.factorValueType}</td>
+                                <td className="center-text">{submittedData.weight}</td>
                             </tr>
                         </tbody>
                     </table>
