@@ -52,7 +52,7 @@ export const Compare = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { name, factorType,factorValueType, weight } = formData;
+        const { name, factorType, factorValueType, weight } = formData;
 
         if (name.trim() === '' || name.length > 30) {
             alert('Tên không hợp lệ!')
@@ -106,7 +106,12 @@ export const Compare = () => {
                         >
                             <option value="">-- Chọn loại --</option>
                             {validFactorTypes.map(type => (
-                                <option key={type.value} value={type.value}>{type.label}</option>
+                                <option
+                                    key={type.value}
+                                    value={type.value}
+                                >
+                                    {type.label}
+                                </option>
                             ))}
                         </select>
                     </label>
@@ -121,7 +126,12 @@ export const Compare = () => {
                         >
                             <option value="">-- Chọn loại --</option>
                             {validFactorValueTypes.map(type => (
-                                <option key={type.value} value={type.value}>{type.label}</option>
+                                <option
+                                    key={type.value}
+                                    value={type.value}
+                                >
+                                    {type.label}
+                                </option>
                             ))}
                         </select>
                     </label>
