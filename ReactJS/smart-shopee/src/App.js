@@ -19,7 +19,7 @@ export function App() {
     <>
       <Form handleCheck={handleCheck} links={links} />
       <Table alinks={links} />
-      <Compare compare={handleCheck} />
+      <Compare compare={App} />
     </>
   );
 }

@@ -1,182 +1,224 @@
 import React, { useState } from 'react';
-import './compare.css'
+import './compare.css';
 
-//Để thêm validFactorTypes 
+// Để thêm validFactorTypes 
 const validFactorTypes = [
-    {
-        value: "impact",
-        label: 'Ảnh hưởng'
-    },
-    {
-        value: "effort",
-        label: 'Nỗ lực'
-    },
-    {
-        value: "custom",
-        label: 'Cá nhân hóa'
-    },
-    {
-        value: "tuy_chon",
-        label: 'Tùy chọn'
-    },
+  {
+    // TODO: This line will bring bugs in the future
+    value: "Ảnh hưởng",
+    label: 'Ảnh hưởng'
+  },
+  {
+    value: "Nỗ lực",
+    label: 'Nỗ lực'
+  },
+  {
+    value: "Cá nhân hóa",
+    label: 'Cá nhân hóa'
+  },
+  {
+    value: "Tùy chọn",
+    label: 'Tùy chọn'
+  },
 ];
 
 const validFactorValueTypes = [
-    {
-        value: "review",
-        label: 'Review'
-    },
-    {
-        value: "totalReview",
-        label: 'Total Review'
-    }
+  {
+    value: "Đánh giá",
+    label: 'Đánh giá'
+  },
+  {
+    value: "Tổng đánh giá",
+    label: 'Tổng đánh giá'
+  }
 ];
 
 export const Compare = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        factorType: '',
-        factorValueType: '',
-        weight: ''
+
+  const [submittedDataArray, setSubmittedDataArray] = useState([]);
+    // TODO: Fake data here, remove on production
+
+
+  const [formData, setFormData] = useState({
+    name: '',
+    factorType: '',
+    factorValueType: '',
+    weight: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value
     });
+  };
+  const [formErrors, setFormErrors] = useState({
+    name: '',
+    factorType: '',
+    factorValueType: '',
+    weight: '',
+  });
 
-    const [submittedData, setSubmittedData] = useState(null);
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, factorType, factorValueType, weight } = formData;
 
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+    const newFormErrors = {
+      name: '',
+      factorType: '',
+      factorValueType: '',
+      weight: '',
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const { name, factorType, factorValueType, weight } = formData;
+    if (name.trim() === '' || name.length > 20) {
+      newFormErrors.name = 'Tên là bắt buộc và có độ dài không quá 20 ký tự.';
 
-        if (name.trim() === '' || name.length > 30) {
-            alert('Tên không hợp lệ!')
-            return;
+    }
+    if (!validFactorTypes.map(type => type.value).includes(factorType)) {
+      newFormErrors.factorType = 'Vui lòng chọn Factor type trong bảng.'
 
-        }
-        if (!validFactorTypes.map(type => type.value).includes(factorType)) {
-            alert('Loại không hợp lệ.')
-            return;
-        }
+    }
 
-        if (!validFactorValueTypes.map(type => type.value).includes(factorValueType)) {
-            alert('Factor value type không hợp lệ!')
-            return;
+    if (!validFactorValueTypes.map(type => type.value).includes(factorValueType)) {
+      newFormErrors.factorValueType = 'Vui lòng chọn Factor value type trong bảng.'
 
-        }
-        if (isNaN(weight) || weight < 1 || weight >= 100) {
-            alert('Trọng số không hợp lệ!');
-            return;
 
-        }
-        setSubmittedData(formData)
-    };
+    }
+    if (isNaN(weight) || weight < 1 || weight >= 100) {
+      newFormErrors.weight = 'Vui lòng nhập trọng số từ 1 đến 100.'
 
-    // console.log({ formData })
-    return (
-        <div className="wrapper">
-            <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <label>
-                        <p>Name:<span className="required">*</span></p>
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Nhập tên..."
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                            maxLength={30}
-                        />
 
-                    </label>
-                    <label>
-                        <p>Factor type:<span className="required">*</span></p>
-                        <select
-                            type="text"
-                            name="factorType"
-                            value={formData.factorType}
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value="">-- Chọn loại --</option>
-                            {validFactorTypes.map(type => (
-                                <option
-                                    key={type.value}
-                                    value={type.value}
-                                >
-                                    {type.label}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                    <label>
-                        <p>Factor value type:<span className="required">*</span></p>
-                        <select
-                            type="text"
-                            name="factorValueType"
-                            value={formData.factorValueType}
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value="">-- Chọn loại --</option>
-                            {validFactorValueTypes.map(type => (
-                                <option
-                                    key={type.value}
-                                    value={type.value}
-                                >
-                                    {type.label}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                    <label>
-                        <p>Weight:<span className="required">*</span></p>
-                        <input
-                            type="number"
-                            name="weight"
-                            placeholder="Nhập trọng số..."
-                            value={formData.weight}
-                            onChange={handleChange}
-                            required
-                            min="1"
-                            max="100"
-                        />
+    }
+    setFormErrors(newFormErrors);
+    if (Object.values(newFormErrors).some(error => error !== '')) {
+      return;
+    }
 
-                    </label>
+    setSubmittedDataArray([...submittedDataArray, formData]);
 
-                </fieldset>
-                <button type="submit">Submit</button>
-            </form>
+    setFormData({
+      name: '',
+      factorType: '',
+      factorValueType: '',
+      weight: ''
+    });
+  };
 
-            {/* Hiển thị kết quả */}
-            {submittedData && (
-                <div className="result">
-                    <h2>Submitted Data</h2>
-                    <table>
-                        <tbody>
+  const handleDelete = (index) => {
+    setSubmittedDataArray(submittedDataArray.filter((_, idx) => idx !== index))
+  }
 
-                            <tr>
-                                <th>Name</th>
-                                <th>Factor type</th>
-                                <th>Factor value type</th>
-                                <th>Weight</th>
-                            </tr>
-                            <tr>
-                                <td className="center-text">{submittedData.name}</td>
-                                <td className="center-text">{submittedData.factorType}</td>
-                                <td className="center-text">{submittedData.factorValueType}</td>
-                                <td className="center-text">{submittedData.weight}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            )}
+  return (
+    <div className="wrapper">
+      <form onSubmit={handleSubmit}>
+        <fieldset >
+          <label>
+            <p>Name:<span className="required">*</span></p>
+            <input
+              type="text"
+              name="name"
+              placeholder="Nhập tên..."
+              value={formData.name}
+              onChange={handleChange}
+              required
+              maxLength={20}
+            />
+            <span className="error"> {formErrors.name}</span>
+          </label>
+          <label>
+            <p>Factor type:<span className="required">*</span></p>
+            <select
+              type="text"
+              name="factorType"
+              value={formData.factorType}
+              onChange={handleChange}
+              required
+            >
+              <option value="">-- Chọn loại --</option>
+              {validFactorTypes.map(type => (
+                <option
+                  key={type.value}
+                  value={type.value}
+                >
+                  {type.label}
+                </option>
+              ))}
+            </select>
+            <span className="error"> {formErrors.factorType}</span>
+          </label>
+          <label>
+            <p>Factor value type:<span className="required">*</span></p>
+            <select
+              type="text"
+              name="factorValueType"
+              value={formData.factorValueType}
+              onChange={handleChange}
+              required
+            >
+              <option value="">-- Chọn loại --</option>
+              {validFactorValueTypes.map(type => (
+                <option
+                  key={type.value}
+                  value={type.value}
+                >
+                  {type.label}
+                </option>
+              ))}
+            </select>
+            <span className="error"> {formErrors.factorValueType}</span>
+          </label>
+          <label>
+            <p>Weight:<span className="required">*</span></p>
+            <input
+              type="number"
+              name="weight"
+              placeholder="Nhập trọng số..."
+              value={formData.weight}
+              onChange={handleChange}
+              required
+              min="1"
+              max="100"
+
+            />
+            <span className="error"> {formErrors.weight}</span>
+          </label>
+
+        </fieldset>
+        <button type="submit" onClick={handleSubmit}>Submit</button>
+      </form>
+
+      {/* Display results */}
+      {submittedDataArray.length > 0 && (
+        <div className="result">
+          <h2>Submitted Data</h2>
+          <table>
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <th>Factor type</th>
+                <th>Factor value type</th>
+                <th>Weight</th>
+                <th>Actions</th>
+              </tr>
+              {submittedDataArray.map((data, index) => (
+                <tr key={index}>
+
+                  <td className="center-text">{data.name}</td>
+                  <td className="center-text">{data.factorType}</td>
+                  <td className="center-text">{data.factorValueType}</td>
+                  <td className="center-text">{data.weight}%</td>
+                  <td className="center-text">
+                    <button onClick={() => handleDelete(index)}>Delete</button>
+                    <button>edit</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-    );
+      )}
+    </div>
+  );
 };
