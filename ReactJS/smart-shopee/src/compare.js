@@ -35,9 +35,17 @@ const validFactorValueTypes = [
 
 export const Compare = () => {
 
-  const [submittedDataArray, setSubmittedDataArray] = useState([]);
-    // TODO: Fake data here, remove on production
+  const [updateData, setUpdateData] = useState();
 
+  const [submittedDataArray, setSubmittedDataArray] = useState([
+    // TODO: Fake data here, remove on production
+    {
+      name: 'Condition 1',
+      factorType: 'Tùy chọn',
+      factorValueType: 'Đánh giá',
+      weight: '30'
+    }
+  ]);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -107,7 +115,29 @@ export const Compare = () => {
   };
 
   const handleDelete = (index) => {
-    setSubmittedDataArray(submittedDataArray.filter((_, idx) => idx !== index))
+
+    if (window.confirm('Bạn có muốn xóa ?') == true) {
+      setSubmittedDataArray(submittedDataArray.filter((_, idx) => idx !== index))
+    }
+  }
+
+  const handleEdit = (data) => {
+    setUpdateData(data);
+    // console.log({ data })
+  }
+
+  const handleUpdateData = () => {
+    // TODO: Get values from form and update to submittedDataArray
+    if (window.confirm('Bạn có muốn thay đổi ?') == true) {
+      setSubmittedDataArray(submittedDataArray.map(submittedData => ({
+
+        ...submittedData,
+        name: "update" + submittedData.name,
+      })))
+      setUpdateData(null);
+    } else {
+      setUpdateData(null);
+    }
   }
 
   return (
@@ -187,6 +217,7 @@ export const Compare = () => {
 
         </fieldset>
         <button type="submit" onClick={handleSubmit}>Submit</button>
+
       </form>
 
       {/* Display results */}
@@ -202,6 +233,7 @@ export const Compare = () => {
                 <th>Weight</th>
                 <th>Actions</th>
               </tr>
+
               {submittedDataArray.map((data, index) => (
                 <tr key={index}>
 
@@ -211,13 +243,19 @@ export const Compare = () => {
                   <td className="center-text">{data.weight}%</td>
                   <td className="center-text">
                     <button onClick={() => handleDelete(index)}>Delete</button>
-                    <button>edit</button>
+                    <button onClick={() => handleEdit(data)}>Edit</button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      )}
+      {!!updateData && (
+        <>
+          <p>Form Update data {updateData.name}</p>
+          <button onClick={handleUpdateData}>Update</button>
+        </>
       )}
     </div>
   );
