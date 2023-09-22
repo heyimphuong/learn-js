@@ -35,7 +35,7 @@ const validFactorValueTypes = [
 
 export const Compare = () => {
 
-  const [updateData, setUpdateData] = useState();
+  const [updateData, setUpdateData] = useState(null);
 
   const [submittedDataArray, setSubmittedDataArray] = useState([
     // TODO: Fake data here, remove on production
@@ -62,6 +62,16 @@ export const Compare = () => {
       [name]: value
     });
   };
+
+  const handleChangeUpdate = (e) => {
+    const { name, value } = e.target;
+
+    setUpdateData({
+      ...updateData,
+      [name]: value
+    });
+  };
+
   const [formErrors, setFormErrors] = useState({
     name: '',
     factorType: '',
@@ -121,18 +131,19 @@ export const Compare = () => {
     }
   }
 
-  const handleEdit = (data) => {
+  const handleEdit = (index, data) => {
     setUpdateData(data);
-    // console.log({ data })
   }
 
-  const handleUpdateData = () => {
+  const handleUpdateData = (index) => {
     // TODO: Get values from form and update to submittedDataArray
     if (window.confirm('Bạn có muốn thay đổi ?') == true) {
+
       setSubmittedDataArray(submittedDataArray.map(submittedData => ({
 
         ...submittedData,
         name: "update" + submittedData.name,
+        factorType: "update" + submittedData.factorType,
       })))
       setUpdateData(null);
     } else {
@@ -217,7 +228,6 @@ export const Compare = () => {
 
         </fieldset>
         <button type="submit" onClick={handleSubmit}>Submit</button>
-
       </form>
 
       {/* Display results */}
@@ -243,7 +253,7 @@ export const Compare = () => {
                   <td className="center-text">{data.weight}%</td>
                   <td className="center-text">
                     <button onClick={() => handleDelete(index)}>Delete</button>
-                    <button onClick={() => handleEdit(data)}>Edit</button>
+                    <button onClick={() => handleEdit(index, data)}>Edit</button>
                   </td>
                 </tr>
               ))}
@@ -251,11 +261,84 @@ export const Compare = () => {
           </table>
         </div>
       )}
+
       {!!updateData && (
-        <>
-          <p>Form Update data {updateData.name}</p>
-          <button onClick={handleUpdateData}>Update</button>
-        </>
+        <form onSubmit={handleUpdateData}>
+          <fieldset >
+            <label>
+              <p>Name:<span className="required">*</span></p>
+              <input
+                type="text"
+                name="name"
+                placeholder="Nhập tên..."
+                value={updateData.name}
+                onChange={handleChangeUpdate}
+                required
+                maxLength={20}
+              />
+              <span className="error"> {formErrors.name}</span>
+            </label>
+            <label>
+              <p>Factor type:<span className="required">*</span></p>
+              <select
+                type="text"
+                name="factorType"
+                value={updateData.factorType}
+                onChange={handleChangeUpdate}
+                required
+              >
+                <option value="">-- Chọn loại --</option>
+                {validFactorTypes.map(type => (
+                  <option
+                    key={type.value}
+                    value={type.value}
+                  >
+                    {type.label}
+                  </option>
+                ))}
+              </select>
+              <span className="error"> {formErrors.factorType}</span>
+            </label>
+            <label>
+              <p>Factor value type:<span className="required">*</span></p>
+              <select
+                type="text"
+                name="factorValueType"
+                value={updateData.factorValueType}
+                onChange={handleChangeUpdate}
+                required
+              >
+                <option value="">-- Chọn loại --</option>
+                {validFactorValueTypes.map(type => (
+                  <option
+                    key={type.value}
+                    value={type.value}
+                  >
+                    {type.label}
+                  </option>
+                ))}
+              </select>
+              <span className="error"> {formErrors.factorValueType}</span>
+            </label>
+            <label>
+              <p>Weight:<span className="required">*</span></p>
+              <input
+                type="number"
+                name="weight"
+                placeholder="Nhập trọng số..."
+                value={updateData.weight}
+                onChange={handleChangeUpdate}
+                required
+                min="1"
+                max="100"
+
+              />
+              <span className="error"> {formErrors.weight}</span>
+            </label>
+
+          </fieldset>
+          <button type="submit" onClick={handleUpdateData}>Update</button>
+        </form>
       )}
     </div>
   );
