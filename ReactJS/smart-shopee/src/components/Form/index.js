@@ -72,22 +72,16 @@ export const Form = ({ onSubmit, submitText, initialData = {
 
     if (name.trim() === '' || name.length > 20) {
       newFormErrors.name = 'Tên là bắt buộc và có độ dài không quá 20 ký tự.';
-
     }
     if (!validFactorTypes.map(type => type.value).includes(factorType)) {
       newFormErrors.factorType = 'Vui lòng chọn Factor type trong bảng.'
-
     }
 
     if (!validFactorValueTypes.map(type => type.value).includes(factorValueType)) {
       newFormErrors.factorValueType = 'Vui lòng chọn Factor value type trong bảng.'
-
-
     }
     if (isNaN(weight) || weight < 1 || weight >= 100) {
       newFormErrors.weight = 'Vui lòng nhập trọng số từ 1 đến 100.'
-
-
     }
     setFormErrors(newFormErrors);
     if (Object.values(newFormErrors).some(error => error !== '')) {

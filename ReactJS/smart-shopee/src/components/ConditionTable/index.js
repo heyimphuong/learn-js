@@ -1,5 +1,5 @@
-export const Table = ({ submittedDataArray = [], handleDelete, handleEdit }) => {
-  return submittedDataArray.length > 0 && (
+export const ConditionTable = ({ factors = [], onDelete, onEdit }) => {
+  return factors.length > 0 && (
     <div className="result">
       <h2>Submitted Data</h2>
       <table>
@@ -12,7 +12,7 @@ export const Table = ({ submittedDataArray = [], handleDelete, handleEdit }) => 
             <th>Actions</th>
           </tr>
 
-          {submittedDataArray.map((data, index) => (
+          {factors.map((data, index) => (
             <tr key={index}>
 
               <td className="center-text">{data.name}</td>
@@ -20,8 +20,8 @@ export const Table = ({ submittedDataArray = [], handleDelete, handleEdit }) => 
               <td className="center-text">{data.factorValueType}</td>
               <td className="center-text">{data.weight}%</td>
               <td className="center-text">
-                <button onClick={() => handleDelete(index)}>Delete</button>
-                <button onClick={() => handleEdit(index, data)}>Edit</button>
+                <button onClick={() => onDelete(index)}>Delete</button>
+                <button onClick={() => onEdit(index, data)}>Edit</button>
               </td>
             </tr>
           ))}
