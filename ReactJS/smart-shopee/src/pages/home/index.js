@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import "../../compare";
+import './compare.css';
 import { Form } from '../../components/Form';
 import { Table } from '../../components/Table';
 
 export const HomePage = () => {
+
   const [submittedDataArray, setSubmittedDataArray] = useState([
     // TODO: Fake data here, remove on production
     {
