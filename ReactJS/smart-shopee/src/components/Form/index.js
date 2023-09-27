@@ -1,34 +1,43 @@
 import { useEffect, useState } from "react";
+import React from 'react';
 
 // Để thêm validFactorTypes 
-const validFactorTypes = [
+export const validFactorTypes = [
   {
     // TODO: This line will bring bugs in the future
-    value: "Ảnh hưởng",
-    label: 'Ảnh hưởng'
+    value: "impact",
+    label: 'Tôi cần'
   },
   {
-    value: "Nỗ lực",
+    value: "effort",
     label: 'Nỗ lực'
   },
   {
-    value: "Cá nhân hóa",
-    label: 'Cá nhân hóa'
+    value: "effort1",
+    label: 'Nỗ lực 1'
   },
   {
-    value: "Tùy chọn",
-    label: 'Tùy chọn'
+    value: "effort2",
+    label: 'Nỗ lực 2'
   },
 ];
 
-const validFactorValueTypes = [
+export const validFactorValueTypes = [
   {
-    value: "Đánh giá",
+    value: "reviewStar",
     label: 'Đánh giá'
   },
   {
-    value: "Tổng đánh giá",
+    value: "totalReviews",
     label: 'Tổng đánh giá'
+  },
+  {
+    value: "reviewStar2",
+    label: 'Đánh giá 2'
+  },
+  {
+    value: "totalReviews2",
+    label: 'Tổng đánh giá 2'
   }
 ];
 
@@ -100,6 +109,22 @@ export const Form = ({ onSubmit, submitText, initialData = {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div>
+        <label for="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+        <div className="mt-2">
+          <input className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+        </div>
+      </div>
+      <div className="w-full">
+        <label for="country" className="block text-sm font-medium leading-6 text-gray-900">Country</label>
+        <div className="mt-2 w-full">
+          <select id="country" name="country" autocomplete="country-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <option>United States</option>
+            <option>Canada</option>
+            <option>Mexico</option>
+          </select>
+        </div>
+      </div>
       <fieldset >
         <label>
           <p>Name:<span className="required">*</span></p>
@@ -173,7 +198,9 @@ export const Form = ({ onSubmit, submitText, initialData = {
         </label>
 
       </fieldset>
-      <button type="submit">{submitText}</button>
+      <button type="submit" className="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        {submitText}
+      </button>
     </form>
   )
 }

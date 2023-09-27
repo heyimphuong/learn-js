@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRef } from "react"
+import { useRef } from "react";
 
 export const LinkForm = ({ links, onCheck }) => {
   const ref = useRef()
