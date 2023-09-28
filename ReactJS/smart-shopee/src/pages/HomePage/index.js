@@ -63,10 +63,10 @@ export const HomePage = () => {
     <>
       <p> <a href="/products">Sang trang products</a></p>
       <Form submitText="Tạo" onSubmit={handleAdd} initialData={{
-        name: '',
-        factorType: '',
-        factorValueType: '',
-        weight: ''
+        name: 'Nhân tố bất kì',
+        factorType: 'impact',
+        factorValueType: 'totalReviews',
+        weight: '10'
       }} />
       <ConditionTable factors={factors} onEdit={handleEdit} onDelete={handleDelete} />
       {!!updateData && (

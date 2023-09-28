@@ -1,13 +1,13 @@
 import React from 'react';
 import { validFactorTypes } from '../Form';
 
-const findFactoryValue = (factorValue) => {
-  for (let index = 0; index < validFactorTypes.length; index++) {
-    if (validFactorTypes[index].value === factorValue) {
-      return validFactorTypes[index].label
-    }
-  }
-}
+// const findFactoryValue = (factorValue) => {
+//   for (let index = 0; index < validFactorTypes.length; index++) {
+//     if (validFactorTypes[index].value === factorValue) {
+//       return validFactorTypes[index].label
+//     }
+//   }
+// }
 
 export const ConditionTable = ({ factors = [], onDelete, onEdit }) => {
 
@@ -83,7 +83,40 @@ export const ConditionTable = ({ factors = [], onDelete, onEdit }) => {
   return factors.length > 0 && (
     <div className="result ">
       <h2>Submitted Data</h2>
-      <table className="w-full text-sm text-left dark:text-gray-400">
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* Testing */}
+      <div>
+        <label for="country" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+          Country
+        </label>
+        <div className="mt-1 sm:mt-0 sm:col-span-2">
+          <select id="country" name="country" autocomplete="country-name" className="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+            <option>United States</option>
+            <option>Canada</option>
+            <option>Mexico</option>
+          </select>
+        </div>
+      </div>
+      {/* End of Testing */}
+
+
+
+
+
+
+      <table className="w-full text-sm text-left dark:text-gray-400 ">
         <tbody>
           <tr>
             <th scope="col" className="px-6 py-4 bg-slate-400">Name</th>
@@ -97,7 +130,8 @@ export const ConditionTable = ({ factors = [], onDelete, onEdit }) => {
             <tr className="border-b dark:border-neutral-500" key={index}>
               <td className="whitespace-nowrap px-6 py-4 ">{data.name}</td>
               <td className="whitespace-nowrap px-6 py-4 ">
-                {findFactoryValue(data.factorType)}
+                {/* {findFactoryValue(data.factorType)} */}
+                {validFactorTypes.find((factor) => factor.value === "impact").label}
               </td>
               <td className="whitespace-nowrap px-6 py-4 ">{data.factorValueType}</td>
               <td className="whitespace-nowrap px-6 py-4 ">{data.weight}%</td>

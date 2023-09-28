@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <div className="p-8 border rounded-2xl w-full max-w-2xl mx-auto mt-8">
+    <div className="p-8 border rounded-2xl w-full max-w-2xl mx-auto mt-8 ">
       {window.location.pathname == '/' && <HomePage />}
       {window.location.pathname == '/products' && < ProductsPage />}
     </div>
