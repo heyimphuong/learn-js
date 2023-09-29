@@ -4,7 +4,6 @@ import React from 'react';
 // Để thêm validFactorTypes 
 export const validFactorTypes = [
   {
-    // TODO: This line will bring bugs in the future
     value: "impact",
     label: 'Tôi cần'
   },
@@ -109,22 +108,6 @@ export const Form = ({ onSubmit, submitText, initialData = {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* <div>
-        <label for="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-        <div className="mt-2">
-          <input className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-        </div>
-      </div>
-      <div className="w-full">
-        <label for="country" className="block text-sm font-medium leading-6 text-gray-900">Country</label>
-        <div className="mt-2 w-full">
-          <select id="country" name="country" autocomplete="country-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            <option>United States</option>
-            <option>Canada</option>
-            <option>Mexico</option>
-          </select>
-        </div>
-      </div> */}
       <fieldset>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -135,7 +118,7 @@ export const Form = ({ onSubmit, submitText, initialData = {
               type="text"
               name="name"
               //nối chuỗi và dùng toán tử 3 ngôi
-              className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm rounded-md ${(!!formErrors.name) ? 'border-red-300 text-red-900' : 'border-gray-300'}`}
+              className={`mt-8 pl-3 pr-10 py-2 border-gray- shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm rounded-md ${(!!formErrors.name) ? 'border-red-300' : 'border-gray-300'}`}
               placeholder="Nhập tên..."
               value={formData.name}
               onChange={handleChange}
@@ -150,7 +133,7 @@ export const Form = ({ onSubmit, submitText, initialData = {
           <select
             type="text"
             name="factorType"
-            className=" mt-8 block w-full pl-3 pr-10 py-2 text-base border-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+            className={`mt-8 block w-full pl-3 pr-10 py-2 text-base border-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md ${(!!formErrors.factorType) ? 'border-red-300' : 'border-gray-300'}`}
             value={formData.factorType}
             onChange={handleChange}
             required
@@ -165,14 +148,14 @@ export const Form = ({ onSubmit, submitText, initialData = {
               </option>
             ))}
           </select>
-          <span className="error"> {formErrors.factorType}</span>
+          <span className="error mt-2 text-sm text-red-600"> {formErrors.factorType}</span>
         </label>
         <label className="block text-sm font-medium text-gray-700 mt-8">
           <p>Factor value type:<span className="required">*</span></p>
           <select
             type="text"
             name="factorValueType"
-            className=" mt-8 block w-full pl-3 pr-10 py-2 text-base border-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+            className={`mt-8 block w-full pl-3 pr-10 py-2 text-base border-gray-800 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md ${(!!formErrors.factorValueType) ? 'border-red-300' : 'border-gray-300'}`}
             value={formData.factorValueType}
             onChange={handleChange}
             required
@@ -187,14 +170,15 @@ export const Form = ({ onSubmit, submitText, initialData = {
               </option>
             ))}
           </select>
-          <span className="error"> {formErrors.factorValueType}</span>
+          <span className="error mt-2 text-sm text-red-600"> {formErrors.factorValueType}</span>
         </label>
-        <label className="block text-sm font-medium text-gray-700 mt-8">
+        {/* TODO: Change this component to Range slider */}
+        <label className=" border-gray-800 block text-sm font-medium text-gray-700 mt-8 w-full">
           <p>Weight:<span className="required">*</span></p>
           <input
             type="number"
             name="weight"
-            className="w-full mt-8"
+            className={`mt-8 pl-3 pr-10 py-2 border-gray-800 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm rounded-md ${(!!formErrors.weight) ? 'border-red-300' : 'border-gray-300'}`}
             placeholder="Nhập trọng số..."
             value={formData.weight}
             onChange={handleChange}
@@ -203,7 +187,7 @@ export const Form = ({ onSubmit, submitText, initialData = {
             max="100"
 
           />
-          <span className="error"> {formErrors.weight}</span>
+          {!!formErrors.weight && <span className="error mt-2 text-sm text-red-600"> {formErrors.weight}</span>}
         </label>
 
       </fieldset>
@@ -213,5 +197,4 @@ export const Form = ({ onSubmit, submitText, initialData = {
     </form>
   )
 }
-
 

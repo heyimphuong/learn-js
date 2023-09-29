@@ -83,39 +83,6 @@ export const ConditionTable = ({ factors = [], onDelete, onEdit }) => {
   return factors.length > 0 && (
     <div className="result ">
       <h2>Submitted Data</h2>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {/* Testing */}
-      <div>
-        <label for="country" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-          Country
-        </label>
-        <div className="mt-1 sm:mt-0 sm:col-span-2">
-          <select id="country" name="country" autocomplete="country-name" className="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
-            <option>United States</option>
-            <option>Canada</option>
-            <option>Mexico</option>
-          </select>
-        </div>
-      </div>
-      {/* End of Testing */}
-
-
-
-
-
-
       <table className="w-full text-sm text-left dark:text-gray-400 ">
         <tbody>
           <tr>
@@ -133,19 +100,21 @@ export const ConditionTable = ({ factors = [], onDelete, onEdit }) => {
                 {/* {findFactoryValue(data.factorType)} */}
                 {validFactorTypes.find((factor) => factor.value === "impact").label}
               </td>
+              {/* TODO: Check this line */}
               <td className="whitespace-nowrap px-6 py-4 ">{data.factorValueType}</td>
               <td className="whitespace-nowrap px-6 py-4 ">{data.weight}%</td>
               <td className="whitespace-nowrap px-6 py-4 ">
                 <button onClick={() => onDelete(index)}>
-                  <svg className="w-6 h-6 text-red-500" ariaHidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 20">
-                    <path fill="currentColor" d="M16 0H4a2 2 0 0 0-2 2v1H1a1 1 0 0 0 0 2h1v2H1a1 1 0 0 0 0 2h1v2H1a1 1 0 0 0 0 2h1v2H1a1 1 0 0 0 0 2h1v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6ZM13.929 17H7.071a.5.5 0 0 1-.5-.5 3.935 3.935 0 1 1 7.858 0 .5.5 0 0 1-.5.5Z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512">
+                    <path d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
                   </svg>
                 </button>
+                &ensp;
                 <button onClick={() => onEdit(index, data)}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                   </svg>
-
                 </button>
 
               </td>
