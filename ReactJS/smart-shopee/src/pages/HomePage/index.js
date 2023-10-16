@@ -10,7 +10,7 @@ export const HomePage = () => {
     {
       name: 'Condition 1',
       factorType: 'impact',
-      factorValueType: 'reviewStar',
+      factorValueType: 'reviewStar2',
       weight: '30'
     }
   ]);
@@ -61,7 +61,7 @@ export const HomePage = () => {
 
   return (
     <>
-      <p> <a href="/products">Sang trang products</a></p>
+      <p> <a className="text-orange-400"href="/products">Sang trang products</a></p>
       <Form submitText="Tạo" onSubmit={handleAdd} initialData={{
         name: 'Nhân tố bất kì',
         factorType: 'impact',

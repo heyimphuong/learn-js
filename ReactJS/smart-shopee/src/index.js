@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom/client';
 import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/products';
 import './app_compiled.css';
-import Example from './pages/Page Headings';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <Example />
-    <div className="p-8 border rounded-2xl w-full max-w-2xl mx-auto mt-8 ">
+    <div className="p-8 border rounded-2xl w-full max-w-2xl mx-auto mt-8 border-gray-800 bg-lime-200">
       {window.location.pathname == '/' && <HomePage />}
       {window.location.pathname == '/products' && < ProductsPage />}
     </div>

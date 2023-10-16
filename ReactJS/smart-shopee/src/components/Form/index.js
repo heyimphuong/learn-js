@@ -110,7 +110,7 @@ export const Form = ({ onSubmit, submitText, initialData = {
     <form onSubmit={handleSubmit}>
       <fieldset>
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-800 ">
             Name: <span className="required ">*</span>
           </label>
           <div>
@@ -118,7 +118,7 @@ export const Form = ({ onSubmit, submitText, initialData = {
               type="text"
               name="name"
               //nối chuỗi và dùng toán tử 3 ngôi
-              className={`mt-8 pl-3 pr-10 py-2 border-gray- shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm rounded-md ${(!!formErrors.name) ? 'border-red-300' : 'border-gray-300'}`}
+              className={`mt-8 pl-3 pr-10 py-2 border-gray- shadow-sm border-gray-800 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm rounded-md ${(!!formErrors.name) ? 'border-red-300' : 'border-gray-300'}`}
               placeholder="Nhập tên..."
               value={formData.name}
               onChange={handleChange}
@@ -191,7 +191,7 @@ export const Form = ({ onSubmit, submitText, initialData = {
         </label>
 
       </fieldset>
-      <button type="submit" className="mt-8 w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+      <button type="submit" className="mt-8 w-full rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         {submitText}
       </button>
     </form>

@@ -96,9 +96,10 @@ export const ConditionTable = ({ factors = [], onDelete, onEdit }) => {
           {factors.map((data, index) => (
             <tr className="border-b dark:border-neutral-500" key={index}>
               <td className="whitespace-nowrap px-6 py-4 ">{data.name}</td>
-              <td className="whitespace-nowrap px-6 py-4 ">
-                {/* {findFactoryValue(data.factorType)} */}
-                {validFactorTypes.find((factor) => factor.value === "impact").label}
+              <td className="whitespace-nowrap px-6 py-4 "> {data.factorType}
+                {/* {validFactorTypes.find((factors) => factors.value === ).label}; */}
+                
+
               </td>
               {/* TODO: Check this line */}
               <td className="whitespace-nowrap px-6 py-4 ">{data.factorValueType}</td>
