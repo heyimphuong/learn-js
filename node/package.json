@@ -1,0 +1,11 @@
+{
+  "name": "learn-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/heyimphuong/learn-js.git",
+  "author": "Ho Phuong <pho295157@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
