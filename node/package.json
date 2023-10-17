@@ -5,7 +5,14 @@
   "repository": "https://github.com/heyimphuong/learn-js.git",
   "author": "Ho Phuong <pho295157@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "morgan": "^1.10.0"
   }
 }
