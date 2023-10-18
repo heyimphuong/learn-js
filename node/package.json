@@ -1,18 +1,20 @@
 {
   "name": "learn-node",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "https://github.com/heyimphuong/learn-js.git",
   "author": "Ho Phuong <pho295157@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon --inspect src/index.js"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "qrcode": "^1.5.3"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1",
-    "morgan": "^1.10.0"
+    "express-handlebars": "^7.1.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1"
   }
 }
