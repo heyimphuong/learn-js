@@ -7,8 +7,9 @@ const QRCode = require('qrcode')
 const app = express();
 const port = 3001;
 
+app.use(express.static(path.join(__dirname,'../../')));
 //HTTP logger 
-app.use(morgan('tiny'));
+// app.use(morgan('tiny'));
 
 //Template engine
 app.engine('hbs', engine({
@@ -24,9 +25,12 @@ app.get('/home', (req, res) => {
 app.get('/news', (req, res) => {
   res.render('news');
 })
+app.get('/search', (req, res) => {
+  console.log(req.query.q);
+  res.render('search');
+})
 
 app.get('/qrcode', (req, res) => {
-  console.log();
   const text = req.query.text;
   if (text.startsWith('https://xvideos.com')) {
     res.send('May khong duoc share web bay ba');
@@ -37,7 +41,7 @@ app.get('/qrcode', (req, res) => {
     res.send('May khong duoc share web bay ba');
     return;
   }
-  QRCode.toDataURL(text, { color: { light: '#008068', dark: '#fff' }, width: 500 })
+  QRCode.toDataURL(text, { color: { light: '#33FFFF', dark: '#fff' }, width: 500 })
     .then(url => {
       var base64Data = url.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
       var img = Buffer.from(base64Data, 'base64');
