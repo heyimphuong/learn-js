@@ -26,4 +26,8 @@ app.set('views', path.join(__dirname, 'resources\\views'));
 // Routes init 
 route(app);
 
+app.use('*', (req, res) => {
+  res.send("Not Found");
+})
+
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

@@ -1,20 +1,18 @@
-const QRCode = require('qrcode');
+
 const { checkTextMiddleware } = require("../app/middlewares/CheckTextMiddleware");
 const fs = require('fs');
 const { capitalizeHeading } = require('../app/helpers/string');
+const newsRouter = require('./news');
+const homesRouter = require('./homes');
+const searchRouter = require('./search');
+const qrcodeRouter = require('./qrcode');
 
 module.exports.route = (app) => {
-  app.get('/home', (req, res) => {
-    res.render('home');
-  });
+  app.get('/homes', homesRouter);
 
-  // app.get('/news', (req, res) => {
-  //   res.render('news');
-  // });
+  app.use('/news', newsRouter);
 
-  app.get('/search', (req, res) => {
-    res.render('search')
-  });
+  app.use('/search', searchRouter);
 
   app.post('/search', (req, res) => {
     console.log(req.body)
@@ -32,54 +30,25 @@ module.exports.route = (app) => {
     //   // file written successfully
     // });
 
-    fs.readFile('./test.txt','utf8', (err, data) => {
+    fs.readFile('./test.txt', 'utf8', (err, data) => {
       if (err) throw err;
 
       res.send(capitalizeHeading(data))
-    return
+      return
 
 
-    // const lines = data.split('\n');
+      // const lines = data.split('\n');
 
 
-    // const filteredLines = lines.filter(line => {
-    //   return /^(#|##|###)/.test(line) ;
-    // });
+      // const filteredLines = lines.filter(line => {
+      //   return /^(#|##|###)/.test(line) ;
+      // });
 
-    // console.log(filteredLines.join('\n')); 
+      // console.log(filteredLines.join('\n')); 
 
-    // res.render('readfile')
-  });
-})
+      // res.render('readfile')
+    });
+  })
 
-app.get('/qrcode', checkTextMiddleware, (req, res, next) => {
-  const text = req.query.text;
-  if (text.startsWith('https://xvideos.com')) {
-    res.send('May khong duoc share web bay ba');
-    return;
-  }
-
-  if (text.startsWith('https://pornhub.com')) {
-    res.send('May khong duoc share web bay ba');
-    return;
-  }
-  next();
-}, (req, res) => {
-  const text = req.query.text;
-
-  QRCode.toDataURL(text, { color: { light: '#33FFFF', dark: '#fff' }, width: 500 })
-    .then(url => {
-      var base64Data = url.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
-      var img = Buffer.from(base64Data, 'base64');
-
-      res.writeHead(200, {
-        'Content-Type': 'image/png',
-        'Content-Length': img.length
-      });
-      res.end(img);
-    })
-    .catch(err => {
-      console.error(err)
-    })
-})
+  app.get('/qrcode', checkTextMiddleware, qrcodeRouter);
 }

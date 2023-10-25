@@ -1,10 +1,3 @@
-class NewsController {
-
-  //[GET] /news
-  index(req, res) {
+module.exports.newsController = (req, res) => {
     res.render('news');
   }
-
-}
-
-module.exports = new NewsController;
