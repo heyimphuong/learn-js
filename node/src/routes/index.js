@@ -3,21 +3,16 @@ const { checkTextMiddleware } = require("../app/middlewares/CheckTextMiddleware"
 const fs = require('fs');
 const { capitalizeHeading } = require('../app/helpers/string');
 const newsRouter = require('./news');
-const homesRouter = require('./homes');
-const searchRouter = require('./search');
+const siteRouter = require('./site');
 const qrcodeRouter = require('./qrcode');
 
 module.exports.route = (app) => {
-  app.get('/homes', homesRouter);
+  
+  app.use('/', siteRouter);
 
   app.use('/news', newsRouter);
 
-  app.use('/search', searchRouter);
-
-  app.post('/search', (req, res) => {
-    console.log(req.body)
-    res.send('')
-  });
+  app.get('/search', siteRouter);
 
   app.get('/string', (req, res) => {
 
